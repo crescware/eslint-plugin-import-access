@@ -1,0 +1,5 @@
+/**
+ * @package
+ */
+export default class {
+}
