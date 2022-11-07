@@ -14,10 +14,15 @@ const indexFileRegExp = new RegExp(`\\${path.sep}index\\.tsx?$`);
  * Checks whether importer is in the same 'package' as exporter.
  */
 export function isInPackage(
-  importer: string,
-  exporter: string,
+  importer_: string,
+  exporter_: string,
   packageOptions: PackageOptions
 ): boolean {
+  const importer =
+    process.platform === "darwin" ? importer_.toLowerCase() : importer_;
+  let exporter =
+    process.platform === "darwin" ? exporter_.toLowerCase() : exporter_;
+
   if (packageOptions.indexLoophole) {
     const match = exporter.match(indexFileRegExp);
     if (match) {
